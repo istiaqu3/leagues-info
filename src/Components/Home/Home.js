@@ -18,12 +18,9 @@ const Home = () => {
 
     return (
         <div style={{marginLeft:"50px", marginRight:"50px",marginTop:"25px"}}>
-            {/* <ol>
-            {leAgues.map(lg => <li>{lg.strLeague}</li>)}
-            </ol> */}
             <Grid container spacing={3} >
                 {leAgues.map(league => 
-                <Grid item xs={4} > 
+                <Grid item xs={12} sm={6} md={4} > 
                 <LeagueCard league={league}></LeagueCard>
                 </Grid>)}
 

@@ -9,6 +9,9 @@ import {
 }
     from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import ExploreIcon from '@material-ui/icons/Explore';
+import Details from '../Details/Details';
+import {Link, Route} from "react-router-dom";
 
 
 
@@ -20,6 +23,8 @@ const useStyles = makeStyles({
 
   });
 
+
+
 const LeagueCard = (props) => { 
     const {strLeague, strSport, idLeague} =props.league;
     // console.log("props from leagueCard",props);
@@ -29,11 +34,20 @@ const LeagueCard = (props) => {
         .then(data => setBadge(data.leagues[0]) )
     },[idLeague]);
     const [badges,setBadge] = useState({});
-    console.log(badges.strBadge);
+    // console.log(badges.strBadge);
     
 
     const classes = useStyles();
     const url = `${badges.strBadge}`;
+
+    const [visibility,setVisibility] = useState(false); 
+
+    const handleExploreBtn= (id) =>{
+        console.log("button clicked,id:",id);
+        setVisibility(true);
+        
+    }
+    console.log("visibility",visibility);
  
 
 
@@ -41,27 +55,47 @@ const LeagueCard = (props) => {
         <div>
 
             <Card>
-               
+               <div style={{display: "flex",justifyContent:'center'}}>
                     <CardMedia className = {classes.media}
-
+                        
                         image= {url}
+                        // image = "../../img/male2.jpg"
                         title={strLeague}
                     />
+                 </div>
+                 <div style={{display: "flex",justifyContent:'center'}}>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" >
                             {strLeague}
                         </Typography>
+                        <div style={{display: "flex",justifyContent:'center'}}>
                         <Typography variant="body2" color="textSecondary" component="p">
                             {strSport}
                          </Typography>
+                         </div>
                     </CardContent>
-               
+                    </div>
+                    <div style={{display: "flex",justifyContent:'center'}}>
                 <CardActions>
-                    <Button size="small" variant="contained" color="primary" alignment="center">
+                    <Link to={`/details/${idLeague}`}>
+                    <Button 
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    alignment="center"
+                    margin="auto"
+                    startIcon={<ExploreIcon />}
+                    onClick={() => { handleExploreBtn(idLeague) }}
+                    >
                         Explore
                     </Button>
+                    </Link>
+                    
                 </CardActions>
+                </div>
             </Card>
+
+
 
 
         </div>

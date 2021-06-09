@@ -9,17 +9,18 @@ import {
 import Home from './Components/Home/Home';
 
 import {Grid } from '@material-ui/core'
+import Details from './Components/Details/Details';
 
 function App() {
   return (
-    <div style={{backgroundColor:"black"}}>
+    <div style={{backgroundColor:"#13294a"}}>
       <Router>
       <div>
        
        <Grid container spacing={3}>
         <Grid item xs={12} >
           <div id= "header">
-            this is header
+            <h1>League Infos</h1>
           </div>
         </Grid>
         </Grid>
@@ -30,6 +31,9 @@ function App() {
 
           <Route path="/home">
             <Home></Home>
+          </Route>
+          <Route path="/details/:idLeague">
+            <Details></Details>
           </Route>
           <Route exact path="/">
             <Home></Home>
